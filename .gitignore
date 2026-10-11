@@ -1,0 +1,8 @@
+# Only curated public product information is allowed in this checkout.
+*
+!/.gitignore
+!/README.md
+!/FEATURES.md
+!/HARSH-PAUN.md
+!/BETA.md
+!/NOTICE.md
