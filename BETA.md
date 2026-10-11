@@ -4,7 +4,7 @@
 
 ## Download
 
-A public DMG has not been uploaded yet. When ready, the download will be linked from [the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/beta.html) and this repository’s Releases. No price or release date is announced here.
+[Download Zenith Beta — October 11, 2026](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/beta-2026-10-11) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications. The package is approximately 309 MB; the release notes include its SHA-256 checksum.
 
 ## Requirements
 

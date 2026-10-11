@@ -37,7 +37,7 @@ This is the **official public product showcase**. Zenith’s application source 
 
 ## Beta availability
 
-Zenith is **in beta**. The public DMG will be added later; there is no download attached yet. Follow this repository for release information.
+Zenith is **in beta**. [Download the public beta](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/beta-2026-10-11) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications.
 
 - Current target: **macOS 26 or later, Apple silicon**.
 - Hardware-specific features require compatible devices.
@@ -68,4 +68,4 @@ Zenith is independent and is not affiliated with or endorsed by Apple, Raycast o
 
 [Explore Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#experience) — try a working liquid glass music player with original music, artwork, playback, seeking, shuffle and direct audio output switching where supported by the browser. Change the preview wallpaper and explore Zenith’s floating toolbar.
 
-The website recreates Zenith’s interface for the browser. Full Mac features are available through the native app; the beta download is coming soon. Native application source and licensing remain private.
+The website recreates Zenith’s interface for the browser. Full Mac features are available through the native app; [the public beta is available](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/beta-2026-10-11). Native application source and licensing remain private.
