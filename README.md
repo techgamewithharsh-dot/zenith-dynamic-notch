@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://zenith-by-harsh-paun.famousdace64.chatgpt.site/assets/zenith-icon.png" width="112" height="112" alt="Zenith app icon">
+<img src="assets/zenith-icon.png" width="112" height="112" alt="Zenith app icon">
 
 # Zenith — Dynamic Notch for Mac
 
@@ -11,7 +11,7 @@ Music. Focus. Files. A little closer to everything.
 
 [**Explore the website ↗**](https://zenith-by-harsh-paun.famousdace64.chatgpt.site/) · [Every feature](FEATURES.md) · [Beta status](BETA.md) · [About Harsh Paun](HARSH-PAUN.md)
 
-<img src="https://zenith-by-harsh-paun.famousdace64.chatgpt.site/assets/social-card.png" width="100%" alt="Zenith — Dynamic notch for Mac, by Harsh Paun. Currently in beta.">
+<img src="assets/social-card.png" width="100%" alt="Zenith — Dynamic notch for Mac, by Harsh Paun. Currently in beta.">
 </div>
 
 ## Your Mac, a little more alive
