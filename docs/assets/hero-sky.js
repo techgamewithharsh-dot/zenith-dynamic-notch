@@ -68,6 +68,6 @@
  }
  function sync(){sky.classList.toggle('sky-paused',!canRun());if(canRun())schedule(true);else stop()}
  new ResizeObserver(resize).observe(hero);
- new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()},{threshold:.12}).observe(hero);
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.12;sync()},{threshold:.12}).observe(hero);
  document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);
 })();
