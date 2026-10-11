@@ -1,5 +1,6 @@
 const galleryTabs=[...document.querySelectorAll('[data-preview]')];
 const descriptions={
+ face:['Face ID','Zenith’s experimental camera-based recognition brings a face-scan experience to its lock screen. Configure and preview it in the app.','Generated UI concept · Camera permission required · Not Apple Face ID'],
  music:['Music controls','Play, pause, skip and seek from the notch. Keep your current track and artwork visible while you work.','Compatible media apps'],
  files:['Files & sharing','Drop files into the shelf, send them with AirDrop, share them or copy them to the clipboard.','File actions in one place'],
  teleprompter:['Teleprompter','Read an auto-scrolling script beneath the webcam. Adjust the speed and text size for calls, presentations and recordings.','Your script, near the camera'],
@@ -17,7 +18,7 @@ function selectPreview(button,focus=false){
  const key=button.dataset.preview;const [title,copy,note]=descriptions[key];
  galleryTabs.forEach(tab=>{const selected=tab===button;tab.setAttribute('aria-selected',selected);tab.tabIndex=selected?0:-1});
  const img=document.querySelector('#feature-preview-image');img.src=`assets/screens/${key}-wide.jpg`;img.alt=`Zenith ${title} panel and its floating toolbar`;
- document.querySelector('.preview-copy .small-label').textContent=key==='camera'?'APP UI · ILLUSTRATIVE CAMERA FEED':'ACTUAL APP SCREENSHOT';
+ document.querySelector('.preview-copy .small-label').textContent=key==='face'?'ILLUSTRATIVE UI CONCEPT':key==='camera'?'APP UI · ILLUSTRATIVE CAMERA FEED':'ACTUAL APP SCREENSHOT';
  document.querySelector('#preview-title').textContent=title;document.querySelector('#preview-description').textContent=copy;document.querySelector('#preview-note').textContent=note;
  if(focus)button.focus();
 }
