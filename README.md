@@ -64,8 +64,8 @@ Use [Issues](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/issue
 
 Zenith is independent and is not affiliated with or endorsed by Apple, Raycast or other named third parties. Their trademarks belong to their respective owners.
 
-## Try the interactive website
+## See the actual interface
 
-[Open Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) — explore music controls, a countdown timer, sample file shelf, editable teleprompter, command search and separate CPU/GPU sample graphs. Customize the wallpaper and glass tint.
+[Explore Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) — see the actual native music interface and floating toolbar on macOS Peak wallpaper in dark mode. Select a toolbar icon for a short invitation to experience the full Mac app. The public beta download is coming soon.
 
-The website is a browser recreation with sample data, not the native Mac application. Only marketing pages and browser presentation assets are public. Zenith’s application source, licensing and private project files are not included.
+The website displays an actual app capture, not a running native Mac application. Only marketing pages and browser presentation assets are public. Zenith’s application source, licensing and private project files are not included.
