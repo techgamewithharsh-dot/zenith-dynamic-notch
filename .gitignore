@@ -10,3 +10,7 @@
 /assets/*
 !/assets/social-card.png
 !/assets/zenith-icon.png
+
+# Public website presentation only; no native app sources.
+!docs/
+!docs/**

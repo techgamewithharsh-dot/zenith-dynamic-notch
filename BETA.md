@@ -4,7 +4,7 @@
 
 ## Download
 
-A public DMG has not been uploaded yet. When ready, the download will be linked from [the website](https://zenith-by-harsh-paun.famousdace64.chatgpt.site/beta.html) and this repository’s Releases. No price or release date is announced here.
+A public DMG has not been uploaded yet. When ready, the download will be linked from [the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/beta.html) and this repository’s Releases. No price or release date is announced here.
 
 ## Requirements
 

@@ -9,7 +9,7 @@
 
 Music. Focus. Files. A little closer to everything.
 
-[**Explore the website ↗**](https://zenith-by-harsh-paun.famousdace64.chatgpt.site/) · [Every feature](FEATURES.md) · [Beta status](BETA.md) · [About Harsh Paun](HARSH-PAUN.md)
+[**Explore the website ↗**](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Every feature](FEATURES.md) · [Beta status](BETA.md) · [About Harsh Paun](HARSH-PAUN.md)
 
 <img src="assets/social-card.png" width="100%" alt="Zenith — Dynamic notch for Mac, by Harsh Paun. Currently in beta.">
 </div>
@@ -63,3 +63,9 @@ Use [Issues](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/issue
 © 2026 **Harsh Paun**. All rights reserved. Zenith is proprietary. Public visibility of this product showcase does not grant rights to copy, redistribute or rebrand the application or its branding. See [NOTICE.md](NOTICE.md).
 
 Zenith is independent and is not affiliated with or endorsed by Apple, Raycast or other named third parties. Their trademarks belong to their respective owners.
+
+## Try the interactive website
+
+[Open Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) — explore music controls, a countdown timer, sample file shelf, editable teleprompter, command search and separate CPU/GPU sample graphs. Customize the wallpaper and glass tint.
+
+The website is a browser recreation with sample data, not the native Mac application. Only marketing pages and browser presentation assets are public. Zenith’s application source, licensing and private project files are not included.

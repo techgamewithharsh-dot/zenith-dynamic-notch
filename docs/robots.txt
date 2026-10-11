@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/sitemap.xml

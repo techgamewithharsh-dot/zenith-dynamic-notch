@@ -2,7 +2,7 @@
 
 **By Harsh Paun · Beta**
 
-[Website](https://zenith-by-harsh-paun.famousdace64.chatgpt.site/features.html) · [Overview](README.md) · [Beta notes](BETA.md)
+[Website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/features.html) · [Overview](README.md) · [Beta notes](BETA.md)
 
 Descriptions cover the current user-facing feature set, including experimental and preview experiences. They do not describe the application’s implementation.
 

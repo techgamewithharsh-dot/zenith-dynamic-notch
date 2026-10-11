@@ -4,7 +4,7 @@
 
 GitHub username: [techgamewithharsh-dot](https://github.com/techgamewithharsh-dot).
 
-[Harsh Paun’s creator page](https://zenith-by-harsh-paun.famousdace64.chatgpt.site/harsh-paun.html) · [App Store developer page](https://apps.apple.com/us/developer/harsh-paun/id1895154152)
+[Harsh Paun’s creator page](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/harsh-paun.html) · [App Store developer page](https://apps.apple.com/us/developer/harsh-paun/id1895154152)
 
 ## Other App Store apps by Harsh Paun
 
