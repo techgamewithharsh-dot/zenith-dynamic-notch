@@ -7,12 +7,17 @@ const descriptions={
  mixer:['Audio mixer','Adjust the volume of supported running apps individually, with their controls collected in one panel.','App and permission dependent'],
  focus:['Focus timer','Choose a session length, start a focus timer and switch to a break without leaving your current task.','Focus and break sessions'],
  ai:['AI activity','Keep supported coding-agent activity and quota information nearby. Availability varies by integration and setup.','Values shown are illustrative'],
+ 'focus-active':['Active focus session','Keep the remaining time and session progress visible. Pause, restart or extend a focus session from the same compact panel.','Focus timer in progress'],
+ tasks:['Tasks','Add quick to-dos, mark them complete and keep your task list within reach of the notch.','Your everyday checklist'],
+ camera:['Camera preview','Check your framing with a live camera view directly inside the notch.','AI-generated camera image · Camera permission required'],
+ lid:['3D Lid','A Duo-style folding-screen animation follows the hinge as you close your Mac. Preview the effect and choose the angle at which folding begins.','Experimental · hinge sensing depends on hardware'],
  game:['Game Mode','See supported performance metrics, temperature and power information, with shortcuts to graphs and gaming tools.','Metrics and controls depend on hardware']
 };
 function selectPreview(button,focus=false){
  const key=button.dataset.preview;const [title,copy,note]=descriptions[key];
  galleryTabs.forEach(tab=>{const selected=tab===button;tab.setAttribute('aria-selected',selected);tab.tabIndex=selected?0:-1});
- const img=document.querySelector('#feature-preview-image');img.src=`assets/screens/${key==='teleprompter'?'teleprompter-v2':key}.jpg`;img.alt=`Zenith ${title} panel and its floating toolbar`;
+ const img=document.querySelector('#feature-preview-image');img.src=`assets/screens/${key}-wide.jpg`;img.alt=`Zenith ${title} panel and its floating toolbar`;
+ document.querySelector('.preview-copy .small-label').textContent=key==='camera'?'APP UI · ILLUSTRATIVE CAMERA FEED':'ACTUAL APP SCREENSHOT';
  document.querySelector('#preview-title').textContent=title;document.querySelector('#preview-description').textContent=copy;document.querySelector('#preview-note').textContent=note;
  if(focus)button.focus();
 }

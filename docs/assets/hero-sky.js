@@ -19,7 +19,7 @@
    let x=hash(i*7+1),y=hash(i*7+3);
    if(x>.30&&x<.70&&y>.2&&y<.74)x=x<.5?x*.55:.75+x*.2;
    const star=document.createElement('i'),size=.7+hash(i*7+5)*1.3;
-   star.style.cssText=`left:${x*100}%;top:${y*100}%;width:${size}px;height:${size}px;--star-alpha:${.12+hash(i+8)*.23};--star-time:${6+hash(i+9)*8}s;animation-delay:${-hash(i+10)*14}s`;
+   star.style.cssText=`left:${x*100}%;top:${y*100}%;width:${size}px;height:${size}px;--star-alpha:${.12+hash(i+8)*.23};--star-time:${36+hash(i+9)*36}s;--drift-x:${-18+hash(i+15)*36}px;--drift-y:${-12+hash(i+19)*28}px;animation-delay:${-hash(i+10)*14}s`;
    stars.append(star);
   }
  }

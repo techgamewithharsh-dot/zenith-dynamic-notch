@@ -98,3 +98,10 @@ header nav a{white-space:nowrap}
 @keyframes quiet-star{from{opacity:calc(var(--star-alpha)*.55)}to{opacity:var(--star-alpha)}}
 .sky-paused .hero-stars i{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.hero-stars i{animation:none}.header-divider path{transition:none}}
+/* Wider source captures retain the desktop context and center the notch itself. */
+.spacious-site .preview-screen{order:0;position:relative;width:100%;max-width:1200px;aspect-ratio:1394/916;overflow:hidden;border-radius:20px;background:#02090e;box-shadow:0 24px 80px #0003}
+.spacious-site .preview-screen>img{display:block;width:102.44%;max-width:none;height:auto;transform:translateX(-2.44%);border-radius:0}
+.spacious-site .preview-tabs{max-width:1150px;margin-left:auto;margin-right:auto}
+@keyframes quiet-star{from{opacity:calc(var(--star-alpha)*.65);transform:translate3d(0,0,0)}to{opacity:var(--star-alpha);transform:translate3d(var(--drift-x,18px),var(--drift-y,12px),0)}}
+@media(max-width:700px){.spacious-site .preview-screen{border-radius:12px}}
+@media(prefers-reduced-motion:reduce){.hero-stars i{animation:none;transform:none}}
