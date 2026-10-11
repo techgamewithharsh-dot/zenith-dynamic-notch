@@ -12,7 +12,7 @@ const descriptions={
 function selectPreview(button,focus=false){
  const key=button.dataset.preview;const [title,copy,note]=descriptions[key];
  galleryTabs.forEach(tab=>{const selected=tab===button;tab.setAttribute('aria-selected',selected);tab.tabIndex=selected?0:-1});
- const img=document.querySelector('#feature-preview-image');img.src=`assets/screens/${key}.jpg`;img.alt=`Zenith ${title} panel and its floating toolbar`;
+ const img=document.querySelector('#feature-preview-image');img.src=`assets/screens/${key==='teleprompter'?'teleprompter-v2':key}.jpg`;img.alt=`Zenith ${title} panel and its floating toolbar`;
  document.querySelector('#preview-title').textContent=title;document.querySelector('#preview-description').textContent=copy;document.querySelector('#preview-note').textContent=note;
  if(focus)button.focus();
 }
