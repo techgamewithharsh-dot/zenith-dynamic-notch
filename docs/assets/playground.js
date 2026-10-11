@@ -1,10 +1,35 @@
-// Actual native capture with accessible feature invitations. No native app source.
 'use strict';
+// Browser presentation and original music only. Native Zenith application source remains private.
 (()=>{
- const dialog=document.getElementById('native-invitation');if(!dialog)return;
- document.querySelectorAll('[data-feature]').forEach(button=>button.addEventListener('click',()=>{
-  document.getElementById('invitation-feature').textContent=button.dataset.feature==='Home'?'ZENITH FOR MAC':button.dataset.feature.toUpperCase();
-  dialog.showModal();
- }));
- dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()}});
+const stage=document.querySelector('.music-stage');if(!stage)return;
+const audio=document.getElementById('zenith-audio'),play=document.getElementById('music-play'),seek=document.getElementById('song-seek'),dialog=document.getElementById('native-invitation'),message=document.getElementById('player-message');
+const tracks=[{name:'Blue Hour',file:'blue-hour',artist:'Zenith Sessions'},{name:'Velvet Orbit',file:'velvet-orbit',artist:'Zenith Sessions'}];
+const glyph={play:'<svg class="glyph play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9L6 21z"/></svg>',pause:'<svg class="glyph pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="5" height="18" rx="1"/><rect x="14" y="3" width="5" height="18" rx="1"/></svg>'};
+let current=0,shuffle=false,scrubbing=false;audio.volume=.65;
+const format=v=>{v=Math.max(0,Math.floor(Number.isFinite(v)?v:0));return Math.floor(v/60)+':'+String(v%60).padStart(2,'0')};
+function syncTime(){const duration=Number.isFinite(audio.duration)?audio.duration:56,time=audio.currentTime||0;if(!scrubbing){seek.max=duration;seek.value=time;seek.style.setProperty('--position',100*time/duration+'%')}document.getElementById('song-elapsed').textContent=format(time);document.getElementById('song-remaining').textContent='−'+format(duration-time);seek.setAttribute('aria-valuetext',format(time)+' of '+format(duration));}
+function syncPlaying(){const running=!audio.paused&&!audio.ended;stage.classList.toggle('is-playing',running);play.innerHTML=glyph[running?'pause':'play'];play.setAttribute('aria-label',(running?'Pause ':'Play ')+tracks[current].name);}
+async function start(){message.textContent='';try{await audio.play()}catch(e){if(e.name!=='AbortError'){message.textContent='Playback couldn’t start. Press play to try again.';syncPlaying()}}}
+function changeTrack(index,keepPlaying){current=(index+tracks.length)%tracks.length;audio.src='assets/music/'+tracks[current].file+'.m4a';audio.load();document.getElementById('song-name').textContent=tracks[current].name;document.getElementById('song-artist').textContent=tracks[current].artist;const art=document.getElementById('song-art');art.src='assets/music/'+tracks[current].file+'.svg';art.alt=tracks[current].name+' album artwork';if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelector('.music-hero').animate([{opacity:.2,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:550,easing:'cubic-bezier(.2,.7,.2,1)'});syncTime();syncPlaying();if(keepPlaying)start();}
+play.onclick=()=>audio.paused?start():audio.pause();
+document.getElementById('music-next').onclick=()=>changeTrack(current+1,!audio.paused);
+document.getElementById('music-previous').onclick=()=>{if(audio.currentTime>3){audio.currentTime=0;syncTime()}else changeTrack(current-1,!audio.paused)};
+document.getElementById('music-shuffle').onclick=e=>{shuffle=!shuffle;e.currentTarget.setAttribute('aria-pressed',String(shuffle));message.textContent=shuffle?'Shuffle on':'Shuffle off';setTimeout(()=>{if(message.textContent.startsWith('Shuffle'))message.textContent=''},1800)};
+seek.addEventListener('input',()=>{scrubbing=true;const value=+seek.value;seek.style.setProperty('--position',100*value/(+seek.max)+'%');document.getElementById('song-elapsed').textContent=format(value);document.getElementById('song-remaining').textContent='−'+format(+seek.max-value);if(Number.isFinite(audio.duration))audio.currentTime=value;});
+seek.addEventListener('change',()=>{scrubbing=false;if(Number.isFinite(audio.duration))audio.currentTime=+seek.value;syncTime()});
+['timeupdate','loadedmetadata','durationchange','seeked'].forEach(event=>audio.addEventListener(event,syncTime));['play','pause','ended'].forEach(event=>audio.addEventListener(event,syncPlaying));
+audio.addEventListener('waiting',()=>{if(!audio.paused)message.textContent='Loading your music…'});audio.addEventListener('playing',()=>message.textContent='');audio.addEventListener('error',()=>message.textContent='The song couldn’t load. Please try again.');
+audio.addEventListener('ended',()=>{if(!audio.loop){let next=shuffle?Math.floor(Math.random()*(tracks.length-1))+1:1;changeTrack(current+next,true)}});
+const settings=document.getElementById('audio-settings'),output=document.getElementById('music-output');function closeSettings(){settings.hidden=true;output.setAttribute('aria-expanded','false')}
+output.onclick=()=>{settings.hidden=!settings.hidden;output.setAttribute('aria-expanded',String(!settings.hidden))};document.getElementById('close-audio-settings').onclick=closeSettings;
+document.getElementById('song-volume').oninput=e=>{audio.volume=+e.target.value;audio.muted=false;document.getElementById('music-mute').setAttribute('aria-pressed','false')};
+document.getElementById('music-mute').onclick=e=>{audio.muted=!audio.muted;e.currentTarget.setAttribute('aria-pressed',String(audio.muted));e.currentTarget.textContent=audio.muted?'Unmute':'Mute'};
+document.getElementById('music-repeat').onclick=e=>{audio.loop=!audio.loop;e.currentTarget.setAttribute('aria-pressed',String(audio.loop))};
+document.querySelectorAll('.dock-button').forEach(button=>button.onclick=()=>{closeSettings();if(button.dataset.feature==='Music'){if(!matchMedia('(prefers-reduced-motion: reduce)').matches)stage.animate([{opacity:.8},{opacity:1}],{duration:450});return}document.getElementById('invitation-feature').textContent=button.dataset.feature.toUpperCase();dialog.showModal()});
+dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSettings();if(e.code==='Space'&&document.activeElement===play){e.preventDefault();play.click()}});
+document.querySelectorAll('[data-wall]').forEach(button=>button.onclick=()=>{stage.dataset.wallpaper=button.dataset.wall;document.querySelectorAll('[data-wall]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelector('.music-atmosphere').animate([{opacity:.4},{opacity:1}],{duration:1400,easing:'ease-out'})});
+if('IntersectionObserver' in window)new IntersectionObserver(entries=>stage.classList.toggle('offscreen',!entries[0].isIntersecting)).observe(stage);
+document.addEventListener('visibilitychange',()=>stage.classList.toggle('offscreen',document.hidden));syncTime();syncPlaying();
+if('mediaSession' in navigator){const metadata=()=>{try{navigator.mediaSession.metadata=new MediaMetadata({title:tracks[current].name,artist:'Zenith Sessions',album:'Zenith',artwork:[{src:new URL('assets/music/'+tracks[current].file+'.svg',location.href).href,type:'image/svg+xml'}]})}catch{}};audio.addEventListener('play',metadata);for(const [name,handler] of Object.entries({play:start,pause:()=>audio.pause(),previoustrack:()=>document.getElementById('music-previous').click(),nexttrack:()=>document.getElementById('music-next').click(),seekto:e=>{if(Number.isFinite(e.seekTime))audio.currentTime=e.seekTime}})){try{navigator.mediaSession.setActionHandler(name,handler)}catch{}}}
 })();
