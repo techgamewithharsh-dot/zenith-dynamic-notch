@@ -10,3 +10,5 @@ header{position:relative;z-index:5}.button,button,a{transition:background .3s,co
 .music-bars{gap:.7cqw}.music-bars i{width:.7cqw;background:#a9a7a2}.is-playing .music-bars i:first-child{background:#baa681;height:.9cqw;animation:none}.is-playing .music-bars i{background:#bdbdbc}.is-playing .music-bars i:last-child{animation-delay:-.3s}.music-actions .glyph.prev,.music-actions .glyph.next{filter:drop-shadow(0 .5px 1px #0004)}
 .motion-word{display:inline-block;opacity:0;transform:translateY(.55em);transition:opacity 1.7s cubic-bezier(.2,.65,.2,1),transform 1.9s cubic-bezier(.2,.65,.2,1);transition-delay:var(--word-delay,0s)}.text-in-view .motion-word{opacity:1;transform:translateY(0)}.reveal{transition-duration:1.8s;transform:translateY(22px)}.hero>.eyebrow,.hero>h1,.hero>.lead,.hero>.actions{animation-duration:2.2s}
 @media(prefers-reduced-motion:reduce){.motion-word{opacity:1;transform:none;transition:none}.reveal{transform:none}}
+
+.hero h1 em{background:none;color:inherit}.hero h1 em .motion-word{background:linear-gradient(110deg,#d8dfff,#90aae1 65%,#d9bc8e);background-clip:text;-webkit-background-clip:text;color:transparent}
