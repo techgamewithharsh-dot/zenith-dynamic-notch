@@ -66,6 +66,6 @@ Zenith is independent and is not affiliated with or endorsed by Apple, Raycast o
 
 ## Try the music player
 
-[Explore Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#experience) — try a working liquid glass music player with original music, artwork, playback, seeking, shuffle, repeat and volume controls. Change the preview wallpaper and explore Zenith’s floating toolbar.
+[Explore Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#experience) — try a working liquid glass music player with original music, artwork, playback, seeking, shuffle and direct audio output switching where supported by the browser. Change the preview wallpaper and explore Zenith’s floating toolbar.
 
 The website recreates Zenith’s interface for the browser. Full Mac features are available through the native app; the beta download is coming soon. Native application source and licensing remain private.
