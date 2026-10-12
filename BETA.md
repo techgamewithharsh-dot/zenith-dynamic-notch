@@ -4,7 +4,7 @@
 
 ## Download
 
-[Download Zenith Beta — October 11, 2026](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/beta-2026-10-11) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications. The package is approximately 309 MB; the release notes include its SHA-256 checksum.
+[Download Zenith Beta — October 11, 2026](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications. The package is approximately 309 MB; the release notes include its SHA-256 checksum.
 
 ## Requirements
 
