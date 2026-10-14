@@ -120,3 +120,10 @@ Descriptions cover the current user-facing feature set, including experimental a
 ## Availability boundaries
 
 A standalone iPhone companion, universal Raycast extension execution, a public plugin store and automatic integrations with every travel, sports or delivery provider are not announced as available. Feature availability in a distributed DMG should be checked against that release’s notes.
+
+## Added in 1.2.02
+
+- Large incoming conversion batches retained in full; sequential image-to-PDF processing and ordered file loading.
+- Successful conversions replace their source shelf entries and open an output folder; original files remain unchanged on disk.
+- Pinned Game Mode system stats: separate CPU/GPU charts, memory, thermal, power, battery, fan and controller readings where available.
+- Experimental gaming companion tools: user-configured game capsules, checksum-verified save checkpoints, observation history and supported bridge events. Integration coverage is limited; no universal compatibility or performance guarantee.

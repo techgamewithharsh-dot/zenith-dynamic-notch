@@ -1,5 +1,18 @@
 # Zenith beta status
 
+## Latest release: 1.2.02 — October 13, 2026
+
+- Bulk image-to-PDF conversion without truncating large incoming batches to 50 files.
+- Page-by-page PDF writing, preserved selection order and a lighter file drawer.
+- Converted source entries leave the shelf after success; originals remain on disk. Outputs open in Downloads / Zenith Conversions.
+- Pinned Game Mode stats with separate CPU and GPU graphs, memory, temperature and power information.
+- Experimental gaming tools require setup and supported integrations; they are not universal game compatibility guarantees.
+
+[Download the signed update](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.2.02)
+
+Automatic delivery requires a running, online Zenith with a writable installation. Legacy disabled checks and macOS restrictions can require manual installation.
+
+
 **Created by Harsh Paun. Currently in beta.**
 
 ## Download
