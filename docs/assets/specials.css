@@ -18,3 +18,16 @@
 @media(prefers-reduced-motion:reduce){.eq-thumb,.eq-level,.output-picker button,.file-demo-source,.file-demo-result,.demo-graph-line,.pin-demo-panel{transition:none}.eq-demo-status.changed .saved-check{animation:none}}
 .native-eq{border-radius:4.6% / 9%;overflow:hidden}
 @media(max-width:900px){.special-copy h3 br{display:initial}}
+/* A quiet connection notification followed by the native EQ curve. */
+.eq-connection{display:flex;align-items:center;gap:12px;margin:0 auto 24px;padding:12px 16px;max-width:360px;border:1px solid #ffffff12;border-radius:16px;background:#ffffff04;min-height:64px}
+.eq-connection-icon{position:relative;display:grid;place-items:center;width:34px;height:34px;flex-shrink:0;color:#91a3bc;transform-origin:center}
+.eq-connection-icon svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.eq-connection-icon i{position:absolute;bottom:0;right:0;width:7px;height:7px;border:2px solid #151c27;border-radius:50%;background:#6d7d94;box-sizing:content-box;transition:background .3s}
+.eq-connection strong{display:block;font-size:12px;font-weight:550;color:#ced9e8;line-height:1.5}.eq-connection small{display:block;font-size:10px;color:#7f94b2;line-height:1.6}
+.eq-demo[data-output=headphones] .eq-connection{border-color:#78aaff35;background:#335d9314}.eq-demo[data-output=headphones] .eq-connection-icon{color:#a9ceff}.eq-demo[data-output=headphones] .eq-connection-icon i{background:#7ad3ae}
+.connection-arrive .eq-connection-icon{animation:headphones-connect .75s cubic-bezier(.22,.7,.2,1)}.connection-leave .eq-connection-icon{animation:headphones-disconnect .65s ease}
+@keyframes headphones-connect{0%{opacity:0;transform:translateY(8px) scale(.8)}60%{opacity:1;transform:translateY(-2px) scale(1.1)}100%{opacity:1;transform:none}}
+@keyframes headphones-disconnect{0%{transform:none;opacity:1}45%{transform:translateY(5px) scale(.92);opacity:.35}100%{transform:none;opacity:1}}
+.eq-thumb,.eq-level{transition-delay:.18s}.eq-auto-controls{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:0 0 16px;font-size:10px;color:#7f94b2}.eq-auto-controls button{border:1px solid #ffffff1a;border-radius:20px;padding:6px 11px;background:#ffffff06;color:#b9cce7;font:inherit;cursor:pointer;min-height:30px}.eq-auto-controls button:hover{background:#ffffff10}
+@media(max-width:600px){.eq-connection{padding:10px 12px;margin-bottom:20px;min-height:60px}.eq-connection strong{font-size:11px}.eq-auto-controls{gap:10px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.connection-arrive .eq-connection-icon,.connection-leave .eq-connection-icon{animation:none}.eq-connection-icon i{transition:none}.eq-thumb,.eq-level{transition-delay:0s}}

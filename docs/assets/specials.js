@@ -15,15 +15,34 @@
   }
   const curves={speakers:[1.2,.5,-.4,-1.3,-.6,.4,1.3,1.9,1.1,.4],headphones:[5.5,4.2,3.5,2.5,1.2,0,0,0,2.2,3.7]};
   const status=root.querySelector('#eq-demo-status'),badge=root.querySelector('.eq-demo-status');
+  const surface=root.querySelector('.eq-demo'),connection=root.querySelector('.eq-connection'),autoButton=root.querySelector('[data-eq-autoplay]');
+  let current='speakers',cycleTimer=0,visible=false,paused=reduced.matches,pageAway=false;
+  const canCycle=()=>visible&&!document.hidden&&!paused&&!pageAway;
+  function stopCycle(){clearTimeout(cycleTimer);cycleTimer=0}
+  function scheduleCycle(){stopCycle();if(canCycle())cycleTimer=setTimeout(()=>{output(current==='speakers'?'headphones':'speakers');scheduleCycle()},7000)}
+  function syncControls(){autoButton.textContent=paused?'Play preview':'Pause preview';autoButton.setAttribute('aria-pressed',String(!paused))}
+
   function output(which,animate=true){
    const label=which==='speakers'?'Mac speakers':'Headphones',curve=curves[which];if(!curve)return;
+   const was=current;current=which;surface.dataset.output=which;
+   connection.querySelector('.eq-connection-title').textContent=which==='headphones'?'Headphones connected':(animate?'Headphones disconnected':'Mac speakers active');
+   connection.querySelector('.eq-connection-detail').textContent=which==='headphones'?'Your saved headphone sound':'Your saved speaker sound';
+   connection.classList.remove('connection-arrive','connection-leave');
+   if(animate&&was!==which&&!reduced.matches)requestAnimationFrame(()=>connection.classList.add(which==='headphones'?'connection-arrive':'connection-leave'));
+
    thumbs.forEach((thumb,i)=>{const delta=-curve[i]*(112/12);if(!animate)thumb.style.transition='none';thumb.style.transform=`translateY(${delta}px)`;const level=levels[i];if(!animate)level.style.transition='none';level.setAttribute('y',Math.min(255,255+delta));level.setAttribute('height',Math.abs(delta))});
    root.querySelectorAll('[data-eq-output]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.eqOutput===which)));
    eq.setAttribute('aria-label',`Apple Music Equalizer preview showing the saved ${label.toLowerCase()} curve`);status.textContent=`${label} · Saved sound loaded`;
    badge.classList.remove('changed');if(animate&&!reduced.matches)requestAnimationFrame(()=>badge.classList.add('changed'));
   }
   output('speakers',false);requestAnimationFrame(()=>requestAnimationFrame(()=>{thumbs.forEach(t=>t.style.removeProperty('transition'));levels.forEach(l=>l.style.removeProperty('transition'))}));
-  root.querySelectorAll('[data-eq-output]').forEach(b=>b.addEventListener('click',()=>output(b.dataset.eqOutput)));
+  root.querySelectorAll('[data-eq-output]').forEach(b=>b.addEventListener('click',()=>{if(current!==b.dataset.eqOutput)output(b.dataset.eqOutput);scheduleCycle()}));
+  autoButton.addEventListener('click',()=>{paused=!paused;syncControls();scheduleCycle()});
+  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;scheduleCycle()},{threshold:0}).observe(surface);
+  document.addEventListener('visibilitychange',scheduleCycle);
+  reduced.addEventListener('change',()=>{paused=reduced.matches;syncControls();scheduleCycle()});
+  window.addEventListener('pagehide',()=>{pageAway=true;stopCycle()});
+  window.addEventListener('pageshow',()=>{pageAway=false;scheduleCycle()});syncControls();
  }
  const file=root.querySelector('.file-demo'),convert=root.querySelector('[data-convert-demo]');let conversionTimer=0;
  convert?.addEventListener('click',()=>{
@@ -36,6 +55,6 @@
  const pin=root.querySelector('.pin-demo'),pinButton=root.querySelector('[data-pin-demo]'),outside=root.querySelector('[data-outside-demo]'),pinStatus=pin?.querySelector('.pin-demo-status');let pinned=false;
  pinButton?.addEventListener('click',()=>{pinned=!pinned;pin.classList.toggle('pinned',pinned);pinButton.setAttribute('aria-pressed',String(pinned));pinButton.setAttribute('aria-label',pinned?'Unpin example note':'Pin example note');pinStatus.textContent=pinned?'Pinned. Now try clicking outside.':'Unpinned. Clicking away closes it.'});
  outside?.addEventListener('click',()=>{if(pin.classList.contains('closed')){pin.classList.remove('closed');outside.innerHTML='Click outside the note <span aria-hidden="true">↗</span>';pinStatus.textContent='Try pinning it before clicking away.';return}if(pinned){pinStatus.textContent='Still here. That’s the point of pinning.'}else{pin.classList.add('closed');pinStatus.textContent='Unpinned notes close when you click away.';outside.innerHTML='Open the note again <span aria-hidden="true">↻</span>'}});
- // No animation loops, device access or audio-route changes in these demos.
+ // One visibility-gated seven-second timer; no real device access or audio-route changes.
  window.addEventListener('pagehide',()=>{if(conversionTimer)clearTimeout(conversionTimer)});
 })();
