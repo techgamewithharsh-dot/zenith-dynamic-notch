@@ -127,3 +127,11 @@ A standalone iPhone companion, universal Raycast extension execution, a public p
 - Successful conversions replace their source shelf entries and open an output folder; original files remain unchanged on disk.
 - Pinned Game Mode system stats: separate CPU/GPU charts, memory, thermal, power, battery, fan and controller readings where available.
 - Experimental gaming companion tools: user-configured game capsules, checksum-verified save checkpoints, observation history and supported bridge events. Integration coverage is limited; no universal compatibility or performance guarantee.
+
+## Added in 1.3.0
+
+- **Device-specific Music EQ:** save Music’s native curve for each active output; automatic switching is opt-in and needs Music and Accessibility. Per-song EQ and Music-only AirPlay routes can affect results.
+- **Keyboard previews:** four acoustic profiles with a local live keyboard preview in Settings and onboarding, after macOS input permissions.
+- **Minecraft arrival and direct play/chat:** rebuilt portal and character animation; network and edition compatibility apply.
+- **Game capsules and checkpoints:** supported configurations and configured save paths are required.
+- **Signed automatic updater:** separate installation process, verification and rollback path, plus a standalone recovery download.

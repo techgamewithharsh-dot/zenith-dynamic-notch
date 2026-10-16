@@ -1,23 +1,20 @@
 # Zenith beta status
 
-## Latest release: 1.2.02 — October 13, 2026
+## Latest release: 1.3.0 — October 15, 2026
 
-- Bulk image-to-PDF conversion without truncating large incoming batches to 50 files.
-- Page-by-page PDF writing, preserved selection order and a lighter file drawer.
-- Converted source entries leave the shelf after success; originals remain on disk. Outputs open in Downloads / Zenith Conversions.
-- Pinned Game Mode stats with separate CPU and GPU graphs, memory, temperature and power information.
-- Experimental gaming tools require setup and supported integrations; they are not universal game compatibility guarantees.
+Device-specific Apple Music EQ, live keyboard previews, the rebuilt Minecraft arrival with wider character spacing, and an independently launched signed updater.
 
-[Download the signed update](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.2.02)
+[Download Zenith](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.0) · [Standalone updater](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith-Updater.zip)
 
-Automatic delivery requires a running, online Zenith with a writable installation. Legacy disabled checks and macOS restrictions can require manual installation.
+Automatic updates need a running, online Zenith and a writable installation. If an older build downloads but fails to install, open the separate Zenith Updater. Settings stay in place.
+
 
 
 **Created by Harsh Paun. Currently in beta.**
 
 ## Download
 
-[Download Zenith Beta — October 11, 2026](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications. The package is approximately 309 MB; the release notes include its SHA-256 checksum.
+[Download Zenith 1.3.0](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications. The package is approximately 388 MB; the release notes include its SHA-256 checksum.
 
 ## Requirements
 

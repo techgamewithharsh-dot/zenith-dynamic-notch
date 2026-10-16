@@ -1,84 +1,81 @@
 <div align="center">
+<img src="assets/zenith-icon.png" width="96" height="96" alt="Zenith app icon">
 
-## Latest release: 1.2.02 — October 13, 2026
+# Zenith
+### Mac reimagined. Dynamic Island for Mac.
 
-- Bulk image-to-PDF conversion without truncating large incoming batches to 50 files.
-- Page-by-page PDF writing, preserved selection order and a lighter file drawer.
-- Converted source entries leave the shelf after success; originals remain on disk. Outputs open in Downloads / Zenith Conversions.
-- Pinned Game Mode stats with separate CPU and GPU graphs, memory, temperature and power information.
-- Experimental gaming tools require setup and supported integrations; they are not universal game compatibility guarantees.
+**1.3.0 · Free public beta · Apple silicon · macOS 26+**
 
-[Download the signed update](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.2.02)
+[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.0)
 
-Automatic delivery requires a running, online Zenith with a writable installation. Legacy disabled checks and macOS restrictions can require manual installation.
+Developer ID signed by Harsh Paun and Apple-notarized.
 
-<img src="assets/zenith-icon.png" width="112" height="112" alt="Zenith app icon">
-
-# Zenith — Dynamic Notch for Mac
-
-### An independent Mac app by **Harsh Paun**
-
-**BETA** · macOS 26+ · Apple silicon · Proprietary application
-
-Music. Focus. Files. A little closer to everything.
-
-[**Explore the website ↗**](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Every feature](FEATURES.md) · [Beta status](BETA.md) · [About Harsh Paun](HARSH-PAUN.md)
-
-<img src="assets/social-card.png" width="100%" alt="Zenith — Dynamic notch for Mac, by Harsh Paun. Currently in beta.">
+<img src="docs/assets/screens/files-wide.jpg" width="900" alt="Zenith file shelf with AirDrop, sharing and clipboard tools">
 </div>
 
-## Your Mac, a little more alive
+## A little closer to everything
 
-**Zenith by Harsh Paun** brings music controls, focus tools, a file shelf and personal touches to the space around your Mac’s notch. Its unified liquid glass design also supports floating island presentations on compatible displays.
+Zenith brings music, smart files, focus and personal touches to your Mac’s notch in a shared liquid glass interface. Floating presentations also work without a physical notch.
 
-This is the **official public product showcase**. Zenith’s application source code, internal assets and implementation details are private and are not included in this repository.
-
-## Explore Zenith
-
-| Experience | What you can do |
+| Make it yours | What’s inside |
 | --- | --- |
-| Music & sound | Now Playing, playback controls, available lyrics, visualizers and output selection. |
-| Focus & productivity | Focus/break timers, teleprompter, calendar, tasks, notes, Shortcuts and webcam mirror. |
-| Files & text | File shelf, sharing, download activity and DropClip text utilities. |
-| Thunderstorm | Find installed apps and Zenith actions; launch saved Raycast command links. |
-| Connected activities | Experimental notification, reply, call and coding-agent panels. |
-| Game mode | Game-session controls, CPU/GPU graphs and supported device metrics. |
-| Personalization | Lock-screen canvas, clock editor, widgets, pets and experimental 3D lid effects. |
-| Power & preferences | Battery information, charging alerts, supported charge management and permission controls. |
+| Music & sound | Playback controls, per-app volume, visualizers and saved Apple Music EQ profiles for your headphones and speakers. |
+| Keyboard character | Four sound profiles, release sounds, depth and stereo tuning, with interactive previews in Settings and onboarding. |
+| Files & clipboard | Stage files, share or AirDrop, choose ZIP or direct folder sharing, convert batches and build PDFs from images. |
+| Focus & everyday tools | Timers, notes with pinning, separate tasks, teleprompter, calendar and launcher. |
+| Gaming | Game Mode with pinned performance graphs, Minecraft arrivals, direct Play Together and chat, supported launch capsules and save checkpoints. |
+| Personalization | Clock styling, still-image wallpaper depth, lock-screen music and optional visual extras. |
 
-**[Read all 66 feature descriptions →](FEATURES.md)** — includes availability labels and current limitations.
+[Complete feature guide →](FEATURES.md) · [Try the keyboard demo →](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#keyboard-demo)
 
-## Beta availability
+## Install
 
-Zenith is **in beta**. [Download the public beta](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest) from GitHub Releases. Open Zenith.dmg and move Zenith to Applications.
+1. [Download Zenith.dmg](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg).
+2. Open it and drag Zenith to Applications.
+3. Open Zenith and follow onboarding for macOS permissions.
 
-- Current target: **macOS 26 or later, Apple silicon**.
-- Hardware-specific features require compatible devices.
-- App integrations require the relevant installed apps and macOS permissions.
-- Some integrations are experimental; some designs are previews. See [beta notes](BETA.md).
+The current DMG is approximately **388 MB**. It requires **Apple silicon and macOS 26 or later**. The release includes SHA-256 checksums.
 
-## Created by Harsh Paun
+## Updates that finish installing
 
-Zenith is **Harsh Paun’s app**. Find Harsh under **[techgamewithharsh-dot](https://github.com/techgamewithharsh-dot)** on GitHub and **[Harsh Paun](https://apps.apple.com/us/developer/harsh-paun/id1895154152)** on the App Store.
+Zenith 1.3.0 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
 
-### More apps by Harsh Paun
+### Already downloaded an update, but nothing installed?
 
-- **[Cinematic Player](https://apps.apple.com/us/app/cinematic-player/id6763082533)** — Video playback and a media library for iPhone and iPad.
-- **[AirSend TV: File Transfer](https://apps.apple.com/us/app/airsend-tv-file-transfer/id6763094307)** — Send personal media to Apple TV and play it on the big screen.
-- **[Dual Monitor For Mac](https://apps.apple.com/us/app/dual-monitor-for-mac/id6794083960)** — Use an iPhone or iPad as an additional display for your Mac.
+[**Download Zenith Updater ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith-Updater.zip), unzip it, and open **Zenith Updater.app**. It fetches the latest signed release and installs it. No background daemon is needed.
 
-## Feedback
+Keep Zenith online and in a writable Applications folder. Older disabled checks, blocked GitHub access or macOS installation restrictions may require the updater or manual DMG installation. The 1.3.0 release uses a stable/latest tag for older stable-only checkers.
 
-Use [Issues](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/issues) for reproducible beta problems and feature suggestions. Remove private information from screenshots and do not post credentials or unfiltered logs.
+## What’s new in 1.3.0
 
-## Ownership
+- Saved device-specific Apple Music EQ, using Music’s official Equalizer controls.
+- Live keyboard previews and a user-paced onboarding Highlights chapter.
+- Rebuilt Minecraft portal arrival, corrected sword grip and wider chase spacing.
+- Reduced redundant page-switch layout work and consistent pin behavior.
+- A notarized standalone updater, also attached to this release for recovery.
 
-© 2026 **Harsh Paun**. All rights reserved. Zenith is proprietary. Public visibility of this product showcase does not grant rights to copy, redistribute or rebrand the application or its branding. See [NOTICE.md](NOTICE.md).
+[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.0)
 
-Zenith is independent and is not affiliated with or endorsed by Apple, Raycast or other named third parties. Their trademarks belong to their respective owners.
+## Compatibility & beta scope
 
-## Try the music player
+Integrations depend on compatible installed apps, hardware and macOS permissions. Music EQ needs Accessibility and Music; unsaved devices leave the EQ unchanged. Direct play depends on the players’ networks. Game capsules and save tools need supported configurations. Camera-based recognition is experimental and is not Apple Face ID. Live/video wallpaper depth is disabled; still-image depth remains available.
 
-[Explore Zenith by Harsh Paun](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#experience) — try a working liquid glass music player with original music, artwork, playback, seeking, shuffle and direct audio output switching where supported by the browser. Change the preview wallpaper and explore Zenith’s floating toolbar.
+[Read beta and compatibility notes →](BETA.md)
 
-The website recreates Zenith’s interface for the browser. Full Mac features are available through the native app; [the public beta is available](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest). Native application source and licensing remain private.
+## More from Harsh Paun
+
+| App | Bring more to your devices |
+| --- | --- |
+| [Cinematic Player](https://apps.apple.com/us/app/cinematic-player/id6763082533) | Movies, subtitles and a media library for iPhone and iPad. |
+| [AirSend TV](https://apps.apple.com/us/app/airsend-tv-file-transfer/id6763094307) | Send personal media to Apple TV over local Wi-Fi. |
+| [Dual Monitor For Mac](https://apps.apple.com/us/app/dual-monitor-for-mac/id6794083960) | Use an iPhone or iPad as another display for your Mac. |
+
+[Explore their actual interfaces →](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#more-apps)
+
+## Feedback & ownership
+
+Report reproducible problems in [Issues](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/issues), with app version, macOS version and Mac model. Remove personal information from attachments.
+
+This repository is the official public showcase. The application source and internal assets remain private. © 2026 Harsh Paun. All rights reserved. See [NOTICE.md](NOTICE.md).
+
+Zenith is independent and is not affiliated with or endorsed by Apple, Minecraft, Microsoft, CodeWeavers or other named third parties. Their trademarks belong to their owners.
