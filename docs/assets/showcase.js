@@ -14,10 +14,19 @@ const descriptions={
  lid:['3D Lid','A Duo-style folding-screen animation follows the hinge as you close your Mac. Preview the effect and choose the angle at which folding begins.','Experimental · hinge sensing depends on hardware'],
  game:['Game Mode','See supported performance metrics, temperature and power information, with shortcuts to graphs and gaming tools.','Metrics and controls depend on hardware']
 };
-function selectPreview(button,focus=false){
+let previewRequest=0;
+async function selectPreview(button,focus=false){
+ const request=++previewRequest;
  const key=button.dataset.preview;const [title,copy,note]=descriptions[key];
  galleryTabs.forEach(tab=>{const selected=tab===button;tab.setAttribute('aria-selected',selected);tab.tabIndex=selected?0:-1});
- const img=document.querySelector('#feature-preview-image');img.src=`assets/screens/${key}-wide.jpg`;img.alt=`Zenith ${title} panel and its floating toolbar`;
+ const img=document.querySelector('#feature-preview-image');
+ const next=new Image();next.src=`assets/screens/${key}-wide.jpg`;
+ try{await next.decode()}catch{return}
+ if(request!==previewRequest)return;
+ img.getAnimations().forEach(animation=>animation.cancel());
+ img.src=next.src;
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)img.animate([{opacity:.65,translate:"0 8px"},{opacity:1,translate:"0 0"}],{duration:420,easing:"cubic-bezier(.16,1,.3,1)"});
+ img.alt=`Zenith ${title} panel and its floating toolbar`;
  document.querySelector('.preview-copy .small-label').textContent=key==='face'?'ILLUSTRATIVE UI CONCEPT':key==='camera'?'APP UI · ILLUSTRATIVE CAMERA FEED':'ACTUAL APP SCREENSHOT';
  document.querySelector('#preview-title').textContent=title;document.querySelector('#preview-description').textContent=copy;document.querySelector('#preview-note').textContent=note;
  if(focus)button.focus();
