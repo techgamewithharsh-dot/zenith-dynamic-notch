@@ -19,8 +19,8 @@
   let current='speakers',cycleTimer=0,visible=false,paused=reduced.matches,pageAway=false;
   const canCycle=()=>visible&&!document.hidden&&!paused&&!pageAway;
   function stopCycle(){clearTimeout(cycleTimer);cycleTimer=0}
-  function scheduleCycle(){stopCycle();if(canCycle())cycleTimer=setTimeout(()=>{output(current==='speakers'?'headphones':'speakers');scheduleCycle()},7000)}
-  function syncControls(){autoButton.textContent=paused?'Play preview':'Pause preview';autoButton.setAttribute('aria-pressed',String(!paused))}
+  function scheduleCycle(){stopCycle();if(canCycle())cycleTimer=setTimeout(()=>{output(current==='speakers'?'headphones':'speakers');scheduleCycle()},4000)}
+  function syncControls(){autoButton.textContent=paused?'Play':'Pause';autoButton.setAttribute('aria-label',paused?'Play automatic EQ preview':'Pause automatic EQ preview');autoButton.setAttribute('aria-pressed',String(!paused))}
 
   function output(which,animate=true){
    const label=which==='speakers'?'Mac speakers':'Headphones',curve=curves[which];if(!curve)return;
@@ -55,6 +55,6 @@
  const pin=root.querySelector('.pin-demo'),pinButton=root.querySelector('[data-pin-demo]'),outside=root.querySelector('[data-outside-demo]'),pinStatus=pin?.querySelector('.pin-demo-status');let pinned=false;
  pinButton?.addEventListener('click',()=>{pinned=!pinned;pin.classList.toggle('pinned',pinned);pinButton.setAttribute('aria-pressed',String(pinned));pinButton.setAttribute('aria-label',pinned?'Unpin example note':'Pin example note');pinStatus.textContent=pinned?'Pinned. Now try clicking outside.':'Unpinned. Clicking away closes it.'});
  outside?.addEventListener('click',()=>{if(pin.classList.contains('closed')){pin.classList.remove('closed');outside.innerHTML='Click outside the note <span aria-hidden="true">↗</span>';pinStatus.textContent='Try pinning it before clicking away.';return}if(pinned){pinStatus.textContent='Still here. That’s the point of pinning.'}else{pin.classList.add('closed');pinStatus.textContent='Unpinned notes close when you click away.';outside.innerHTML='Open the note again <span aria-hidden="true">↻</span>'}});
- // One visibility-gated seven-second timer; no real device access or audio-route changes.
+ // One visibility-gated four-second timer; no real device access or audio-route changes.
  window.addEventListener('pagehide',()=>{if(conversionTimer)clearTimeout(conversionTimer)});
 })();
