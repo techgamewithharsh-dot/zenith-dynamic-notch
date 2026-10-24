@@ -1,5 +1,6 @@
 const galleryTabs=[...document.querySelectorAll('[data-preview]')];
 const descriptions={
+ launcher:['Zenith Launcher','A fluid, ProMotion 120Hz app launcher with SpringBoard-grade trackpad swipe dynamics, zero micro-stutter, and full-screen grid organization.','Actual App Screenshot · ProMotion 120Hz Spring Dynamics'],
  face:['Face ID','Zenith’s experimental camera-based recognition brings a face-scan experience to its lock screen. Configure and preview it in the app.','Generated UI concept · Camera permission required · Not Apple Face ID'],
  music:['Music controls','Play, pause, skip and seek from the notch. Keep your current track and artwork visible while you work.','Compatible media apps'],
  files:['Files & sharing','Drop files into the shelf, send them with AirDrop, share them or copy them to the clipboard.','File actions in one place'],
@@ -17,7 +18,7 @@ const descriptions={
 let previewRequest=0;
 async function selectPreview(button,focus=false){
  const request=++previewRequest;
- const key=button.dataset.preview;const [title,copy,note]=descriptions[key];
+ const key=button.dataset.preview;const [title,copy,note]=descriptions[key]||descriptions['files'];
  galleryTabs.forEach(tab=>{const selected=tab===button;tab.setAttribute('aria-selected',selected);tab.tabIndex=selected?0:-1});
  const img=document.querySelector('#feature-preview-image');
  const next=new Image();next.src=`assets/screens/${key}-wide.jpg`;
@@ -25,7 +26,7 @@ async function selectPreview(button,focus=false){
  if(request!==previewRequest)return;
  img.getAnimations().forEach(animation=>animation.cancel());
  img.src=next.src;
- if(!matchMedia('(prefers-reduced-motion: reduce)').matches)img.animate([{opacity:.65,translate:"0 8px"},{opacity:1,translate:"0 0"}],{duration:420,easing:"cubic-bezier(.16,1,.3,1)"});
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)img.animate([{opacity:.65,translate:"0 8px"},{opacity:1,translate:"0 0"}],{duration:420,easing:"cubic-bezier(.17,.98,.28,1.02)"});
  img.alt=`Zenith ${title} panel and its floating toolbar`;
  document.querySelector('.preview-copy .small-label').textContent=key==='face'?'ILLUSTRATIVE UI CONCEPT':key==='camera'?'APP UI · ILLUSTRATIVE CAMERA FEED':'ACTUAL APP SCREENSHOT';
  document.querySelector('#preview-title').textContent=title;document.querySelector('#preview-description').textContent=copy;document.querySelector('#preview-note').textContent=note;

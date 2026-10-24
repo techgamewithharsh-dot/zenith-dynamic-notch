@@ -55,6 +55,13 @@
  const pin=root.querySelector('.pin-demo'),pinButton=root.querySelector('[data-pin-demo]'),outside=root.querySelector('[data-outside-demo]'),pinStatus=pin?.querySelector('.pin-demo-status');let pinned=false;
  pinButton?.addEventListener('click',()=>{pinned=!pinned;pin.classList.toggle('pinned',pinned);pinButton.setAttribute('aria-pressed',String(pinned));pinButton.setAttribute('aria-label',pinned?'Unpin example note':'Pin example note');pinStatus.textContent=pinned?'Pinned. Now try clicking outside.':'Unpinned. Clicking away closes it.'});
  outside?.addEventListener('click',()=>{if(pin.classList.contains('closed')){pin.classList.remove('closed');outside.innerHTML='Click outside the note <span aria-hidden="true">↗</span>';pinStatus.textContent='Try pinning it before clicking away.';return}if(pinned){pinStatus.textContent='Still here. That’s the point of pinning.'}else{pin.classList.add('closed');pinStatus.textContent='Unpinned notes close when you click away.';outside.innerHTML='Open the note again <span aria-hidden="true">↻</span>'}});
+ const launcher=root.querySelector('.launcher-demo'),launcherGrid=launcher?.querySelector('.launcher-grid-preview'),swipeButton=root.querySelector('[data-swipe-demo]');
+ let swiped=false;
+ swipeButton?.addEventListener('click',()=>{
+  swiped=!swiped;
+  launcherGrid?.classList.toggle('swiped',swiped);
+  swipeButton.innerHTML=swiped?'Release to Spring Snap <span aria-hidden="true">←</span>':'Simulate 2-Finger Swipe <span aria-hidden="true">→</span>';
+ });
  // One visibility-gated four-second timer; no real device access or audio-route changes.
  window.addEventListener('pagehide',()=>{if(conversionTimer)clearTimeout(conversionTimer)});
 })();

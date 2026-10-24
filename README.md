@@ -4,9 +4,9 @@
 # Zenith
 ### Mac reimagined. Dynamic Island for Mac.
 
-**1.3.0 · Free public beta · Apple silicon · macOS 26+**
+**1.3.1 · Free public beta · Apple silicon · macOS 26+**
 
-[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.0)
+[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.1)
 
 Developer ID signed by Harsh Paun and Apple-notarized.
 
@@ -38,15 +38,24 @@ The current DMG is approximately **388 MB**. It requires **Apple silicon and mac
 
 ## Updates that finish installing
 
-Zenith 1.3.0 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
+Zenith 1.3.1 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
 
 ### Already downloaded an update, but nothing installed?
 
 [**Download Zenith Updater ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith-Updater.zip), unzip it, and open **Zenith Updater.app**. It fetches the latest signed release and installs it. No background daemon is needed.
 
-Keep Zenith online and in a writable Applications folder. Older disabled checks, blocked GitHub access or macOS installation restrictions may require the updater or manual DMG installation. The 1.3.0 release uses a stable/latest tag for older stable-only checkers.
+Keep Zenith online and in a writable Applications folder. The 1.3.1 release uses a stable/latest tag for older stable-only checkers.
 
-## What’s new in 1.3.0
+## What’s new in 1.3.1
+
+- **ProMotion 120Hz SpringBoard Paging**: Rebuilt Zenith Launcher trackpad swipe navigation with continuous Apple SpringBoard physics (`response: 0.38, dampingRatio: 0.86`), zero micro-jitter, and seamless subpixel velocity tracking.
+- **Mandatory Seamless Auto-Updater**: Zero-hassle background updater guarantees critical security, feature, and stability updates automatically.
+- **Hardened Gatekeeper & Developer ID Security**: Hardened runtime, Developer ID codesigned, Apple notarized, and stapled. Full binary scrubbing with zero machine path leakage and sealed encrypted asset vault.
+- **Enhanced Liquid Glass UI**: Refined physics and luminescent edge reflections across all panels.
+
+[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.1)
+
+## What was new in 1.3.0
 
 - Saved device-specific Apple Music EQ, using Music’s official Equalizer controls.
 - Live keyboard previews and a user-paced onboarding Highlights chapter.
@@ -54,7 +63,7 @@ Keep Zenith online and in a writable Applications folder. Older disabled checks,
 - Reduced redundant page-switch layout work and consistent pin behavior.
 - A notarized standalone updater, also attached to this release for recovery.
 
-[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.0)
+[1.3.0 release notes →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.0)
 
 ## Compatibility & beta scope
 
