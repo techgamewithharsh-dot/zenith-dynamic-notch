@@ -88,3 +88,13 @@ main{overflow-x:clip}
  .face-scan{top:48%;padding:6px 10px}
  .face-scan svg{width:20px}
 }
+/* Scale the lock-screen UI to its display, including short desktop windows. */
+.face-display{container-type:inline-size}
+.face-display .face-lock>p{position:absolute;top:0;font-size:clamp(7px,2cqw,15px)}
+.face-display .face-time{position:absolute;top:8%;font-size:clamp(26px,12cqw,90px);line-height:1}
+.face-display .face-avatar{position:absolute;bottom:22%;margin:0;width:clamp(22px,7.5cqw,56px);font-size:clamp(12px,3cqw,24px)}
+.face-display .face-lock>span{position:absolute;bottom:16%;font-size:clamp(7px,1.8cqw,14px)}
+.face-display .face-password{position:absolute;bottom:5%;margin:0;font-size:clamp(6px,1.5cqw,11px);padding:.8cqw 2cqw}
+.face-display .face-scan{top:46%;gap:1.5cqw;padding:1.5cqw 2.5cqw;border-radius:2.5cqw}
+.face-display .face-scan svg{width:clamp(18px,5cqw,40px)}
+.face-display .face-scan-label{font-size:clamp(8px,2cqw,15px)}
