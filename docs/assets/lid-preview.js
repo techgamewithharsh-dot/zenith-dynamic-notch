@@ -4,6 +4,8 @@
  const canvas=document.getElementById('fold-canvas');if(!canvas)return;
  const gl=canvas.getContext('webgl',{alpha:false,antialias:false,powerPreference:'low-power'});
  if(!gl){canvas.style.background='url(assets/editorial/hero-wallpaper.webp) center/cover';return;}
+ let lastTurn=0;let render=()=>{};window.zenithFold=value=>{lastTurn=value;render(value);};
+ function initialize(){
  const vertex=`attribute vec2 p;varying vec2 uv;void main(){uv=vec2((p.x+1.)*.5,(1.-p.y)*.5);gl_Position=vec4(p,0.,1.);}`;
  const fragment=`precision mediump float;varying vec2 uv;uniform sampler2D image;uniform float turn;
  void main(){float h=1.-uv.y;float taper=.21*turn;float depth=2.*taper/(1.-2.*taper);float sh=h/(1.+depth*(1.-h));float width=1./(1.+depth*sh);vec2 q=vec2((uv.x-.5)/width+.5,1.-sh);if(q.x<0.||q.x>1.){gl_FragColor=vec4(.003,.004,.005,1.);return;}
@@ -27,6 +29,10 @@
  for(let i=0;i<3;i++){ctx.fillStyle=['#d4dff3','#d9e6e0','#e9deec'][i];ctx.beginPath();ctx.roundRect(w*(.25+i*.165),h*.45,w*.145,h*.20,10);ctx.fill()}
  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,desktop);ready=true;draw(current);};image.src='assets/editorial/hero-wallpaper.webp';
  function draw(value){current=value;if(!ready||gl.isContextLost())return;gl.viewport(0,0,canvas.width,canvas.height);gl.uniform1f(turn,Math.max(0,Math.min(1,value)));gl.drawArrays(gl.TRIANGLES,0,6);}
- window.zenithFold=draw;canvas.addEventListener('webglcontextlost',()=>{canvas.style.background='url(assets/editorial/hero-wallpaper.webp) center/cover';});
+ render=draw;current=lastTurn;
  }catch{canvas.style.background='url(assets/editorial/hero-wallpaper.webp) center/cover';}
+ }
+ canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();});
+ canvas.addEventListener('webglcontextrestored',initialize);
+ initialize();
 })();

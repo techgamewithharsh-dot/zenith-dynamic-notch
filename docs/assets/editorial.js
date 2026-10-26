@@ -20,35 +20,66 @@
  {section:$('.wallpaper-sequence'),video:$('#lock-scroll-video'),length:20}].filter(s=>s.section&&s.video);
  const clamp=v=>Math.max(0,Math.min(1,v));
  scenes.forEach(scene=>{
-  scene.target=0;
-  scene.seek=()=>{const v=scene.video;if(v.readyState<1||v.seeking)return;
-   const target=Math.min(scene.target,Math.max(0,v.duration-.04));
-   if(Math.abs(v.currentTime-target)>.025)v.currentTime=target;
+  scene.target=0;scene.active=false;scene.started=0;
+  const v=scene.video;
+  let lastProgress=performance.now(),lastRecovery=0,retries=0,priming=false,primed=false;
+  v.muted=true;v.defaultMuted=true;v.playsInline=true;
+  scene.seek=()=>{
+   if(!scene.active||document.hidden||priming||v.readyState<2||!Number.isFinite(v.duration))return;
+   const target=Math.min(scene.target,Math.max(0,v.duration-.08));
+   if(v.seeking)return;
+   if(Math.abs(v.currentTime-target)>.04){scene.started=performance.now();try{v.currentTime=target;}catch{scene.started=0;}}
   };
-  scene.video.addEventListener('loadedmetadata',scene.seek);
-  scene.video.addEventListener('loadeddata',scene.seek);
-  scene.video.addEventListener('seeked',scene.seek);
-  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{
-   if(entries.some(e=>e.isIntersecting)&&scene.video.preload==='none'){scene.video.preload='auto';scene.video.load();}
+  // Decode a first frame before paused, scroll-driven seeking on WebKit.
+  const prime=()=>{
+   if(primed||priming||!scene.active||document.hidden)return;
+   priming=true;
+   const done=()=>{v.pause();priming=false;primed=true;scene.seek();};
+   const attempt=v.play();
+   if(attempt)attempt.then(done,()=>{priming=false;scene.seek();});else done();
+  };
+  const resume=()=>{lastProgress=performance.now();if(!v.seeking)scene.started=0;scene.seek();};
+  ['loadeddata','canplay','seeked','progress'].forEach(name=>v.addEventListener(name,resume));
+  v.addEventListener('loadeddata',prime);
+  new IntersectionObserver(entries=>{
+   const wasActive=scene.active;scene.active=entries.some(e=>e.isIntersecting);
+   if(scene.active){
+    if(!wasActive){lastProgress=performance.now();retries=0;}
+    v.preload='auto';if(v.networkState===0)v.load();prime();scene.seek();
+   }else v.pause();
   },{rootMargin:'800px'}).observe(scene.section);
+  // Recover initial loading as well as suspended seeks, with bounded backoff.
+  setInterval(()=>{
+   if(!scene.active||document.hidden)return;
+   const now=performance.now();
+   const stalled=(v.readyState<2&&now-lastProgress>8000)||(v.seeking&&scene.started&&now-scene.started>4000)||v.error;
+   if(stalled&&retries<3&&now-lastRecovery>8000*Math.pow(2,retries)){
+    lastRecovery=lastProgress=now;retries++;scene.started=0;primed=false;priming=false;v.load();
+   }else scene.seek();
+  },500);
+  const wake=()=>{if(document.hidden)return;lastProgress=performance.now();retries=0;prime();scene.seek();};
+  addEventListener('pageshow',wake);document.addEventListener('visibilitychange',wake);
+  document.addEventListener('pointerdown',prime,{passive:true});
+
  });
  let pending=false;
  const updateScenes=()=>{
   pending=false;const height=innerHeight;
   scenes.forEach(scene=>{
    const r=scene.section.getBoundingClientRect();
-   const p=clamp((-r.top)/Math.max(1,r.height-height));
+   const stageHeight=scene.section.querySelector('.opening-sticky,.wallpaper-sticky')?.clientHeight||height;
+   const p=clamp((-r.top)/Math.max(1,r.height-stageHeight));
    let videoProgress=p;
    if(scene.video.id==='hero-scroll-video'){
     // Start scrubbing once the MacBook rises into center-stage (p > 0.14)
     const q=clamp((p-.14)/.82);
     videoProgress=q<.38?(q/.38)*.26:q<.68?.26+((q-.38)/.30)*.55:.81+((q-.68)/.32)*.19;
-    if(!reduced.matches&&innerHeight>=650){
+    if(!reduced.matches){
      const enter=clamp(p/.18),copy=clamp(p/.14);
      $('.opening-copy').style.opacity=String(1-copy);
      $('.opening-copy').style.transform=`translateY(${-copy*95}px)`;
      const zoom=clamp((p-.22)/.38), retreat=clamp((p-.84)/.16);
-     const magnify=1+zoom*(innerWidth<700?.26:.72)-retreat*.16;
+     const magnify=1+zoom*(innerWidth<700?.04:.72)-retreat*.16;
      // At p=0 (enter=0), startY = 0.95 * height so the MacBook starts cleanly below the viewport
      // On first scroll, enter quickly increases from 0 to 1 and MacBook smoothly rises into center stage!
      const startY = (1-enter)*height*0.95;
@@ -91,183 +122,37 @@
   const fold=$('.fold-story');
   if(fold&&!reduced.matches){
    const r=fold.getBoundingClientRect();const p=clamp(-r.top/Math.max(1,r.height-height));
-   const phase=p<.5?p*2:(1-p)*2;
-   window.zenithFold?.(phase);
+   const cycle=p<.5?p*2:(1-p)*2;
+   const phase=cycle*cycle*(3-2*cycle);
+   window.zenithFold?.(phase*.50);
+   fold.style.setProperty('--lid-light',String(1-phase*.12));
+   fold.style.setProperty('--lid-shadow',String(1-phase*.25));
+   fold.style.setProperty('--physical-lid-angle',`${-phase*36}deg`);
    const pill=$('#fold-angle-pill');
-   if(pill){const angle=Math.round(118-phase*46);pill.textContent=`HINGE SENSOR · ${angle}° LIVE BEND`;}
+   if(pill){const angle=Math.round(118-phase*36);pill.textContent=`HINGE SENSOR · ${angle}° LIVE BEND`;}
   }
   const immersive=$$('.immersive-scene').some(el=>{const r=el.getBoundingClientRect();return r.top<height*.12&&r.bottom>height*.88;});
   $('.site-header')?.classList.toggle('scene-hidden',immersive);
  };
  const queueScenes=()=>{if(!pending){pending=true;requestAnimationFrame(updateScenes);}};
- addEventListener('scroll',queueScenes,{passive:true});addEventListener('resize',queueScenes);
+ addEventListener('scroll',queueScenes,{passive:true});addEventListener('resize',queueScenes);addEventListener('pageshow',queueScenes);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)queueScenes();});
  reduced.addEventListener('change',queueScenes);updateScenes();
-
- const eq = $('#eq-demo');
- if (eq) {
-  let device = 'headphones', auto = !reduced.matches, visible = false, timer, disconnectTimer;
-  // Ten bands matching native Apple Music Equaliser: 32, 64, 125, 250, 500, 1K, 2K, 4K, 8K, 16K in dB (-12 to +12)
-  const curves = {
-   speakers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   headphones: [5.5, 4.2, 3.5, 2.0, 0.8, -0.4, 0.6, 2.4, 4.2, 5.0]
-  };
-  const island = $('#di-notch-island');
-  const airpodSvg = $('.airpod-svg');
-  const autoButton = $('#eq-auto');
-  const presetLabel = $('#eq-preset-name');
-  const livePill = $('#eq-live-pill');
-
-  const update = (next) => {
-   device = next;
-   const isHeadphones = next === 'headphones';
-   clearTimeout(disconnectTimer);
-
-   // 1. Dynamic Island Notch animation (widens left-to-right on connect, exit animation on disconnect)
-   if (island) {
-    const titleEl = $('#di-device-title');
-    const subEl = $('#di-device-sub');
-
-    if (isHeadphones) {
-     island.classList.remove('is-disconnecting');
-     island.classList.add('is-connected');
-     if (titleEl) titleEl.textContent = 'AirPods Pro';
-     if (subEl) subEl.textContent = 'Connected · 100%';
-
-     // Restart 3D AirPods rotation
-     if (airpodSvg) {
-      airpodSvg.style.animation = 'none';
-      requestAnimationFrame(() => {
-       requestAnimationFrame(() => {
-        airpodSvg.style.animation = '';
-       });
-      });
-     }
-    } else {
-     // Disconnection exit animation: brief disconnect badge then smooth collapse
-     island.classList.remove('is-connected');
-     island.classList.add('is-disconnecting');
-     if (titleEl) titleEl.textContent = 'AirPods Pro';
-     if (subEl) subEl.textContent = 'Disconnected';
-
-     disconnectTimer = setTimeout(() => {
-      island.classList.remove('is-disconnecting');
-      if (titleEl) titleEl.textContent = 'Mac speakers';
-      if (subEl) subEl.textContent = 'Default Output';
-     }, 750);
-    }
-   }
-
-   // 2. Apple Music Equalizer sliders & authentic pink stems
-   // 140px channel: center 0dB is at 70px. Decibels range -12dB to +12dB (travel = 58px each way)
-   const currentCurve = curves[next];
-   $$('.native-eq-grid .eq-slider-thumb[data-band-idx]').forEach((thumb, i) => {
-    const db = currentCurve[i] || 0;
-    const centerY = 70;
-    const y = centerY - (db / 12) * 58;
-    thumb.style.transform = `translateY(${(y - 7).toFixed(1)}px)`;
-
-    const stem = $(`.eq-stem[data-stem-idx="${i}"]`);
-    if (stem) {
-     if (y < centerY) {
-      // Above 0dB: stem rises from center line (70px) up to knob center (y)
-      stem.style.top = `${y.toFixed(1)}px`;
-      stem.style.height = `${(centerY - y).toFixed(1)}px`;
-     } else if (y > centerY) {
-      // Below 0dB: stem drops from center line (70px) down to knob center (y)
-      stem.style.top = `${centerY}px`;
-      stem.style.height = `${(y - centerY).toFixed(1)}px`;
-     } else {
-      stem.style.top = `${centerY}px`;
-      stem.style.height = '0px';
-     }
-    }
-   });
-
-   // Preamp slider & stem
-   const preampDb = isHeadphones ? 2.5 : 0;
-   const preampCenter = 70;
-   const preampY = preampCenter - (preampDb / 12) * 58;
-   const preampThumb = $('.preamp-thumb');
-   const preampStem = $('.preamp-stem');
-   if (preampThumb) preampThumb.style.transform = `translateY(${(preampY - 7).toFixed(1)}px)`;
-   if (preampStem) {
-    if (preampY < preampCenter) {
-     preampStem.style.top = `${preampY.toFixed(1)}px`;
-     preampStem.style.height = `${(preampCenter - preampY).toFixed(1)}px`;
-    } else {
-     preampStem.style.top = `${preampCenter}px`;
-     preampStem.style.height = '0px';
-    }
-   }
-
-   // 3. Preset label & Meta telemetry
-   if (presetLabel) {
-    presetLabel.textContent = isHeadphones ? 'Custom · AirPods Pro' : 'Manual';
-   }
-   if (livePill) {
-    livePill.innerHTML = isHeadphones
-     ? '<i class="live-dot"></i> Connected · Saved EQ active'
-     : '<i class="live-dot" style="background:#8e8e93;box-shadow:none"></i> Disconnected · Flat speaker EQ';
-   }
-
-   // 4. Active button state
-   $$('[data-device]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.device === next)));
-  };
-
-  const schedule = () => {
-   clearInterval(timer); timer = undefined;
-   if (autoButton) {
-    autoButton.setAttribute('aria-pressed', String(auto));
-    autoButton.textContent = auto ? 'Pause demo' : 'Play demo';
-    autoButton.setAttribute('aria-label', auto ? 'Pause automatic EQ preview' : 'Play automatic EQ preview');
-   }
-   if (auto && visible && !document.hidden) {
-    timer = setInterval(() => update(device === 'speakers' ? 'headphones' : 'speakers'), 3600);
-   }
-  };
-
-  $$('[data-device]').forEach(b => b.addEventListener('click', () => {
-   auto = false;
-   update(b.dataset.device);
-   schedule();
-  }));
-
-  autoButton?.addEventListener('click', () => {
-   auto = !auto;
-   schedule();
-  });
-
-  if ('IntersectionObserver' in window) {
-   new IntersectionObserver(entries => {
-    visible = entries[0].isIntersecting;
-    schedule();
-   }, { threshold: 0.15 }).observe(eq);
-  } else {
-   visible = true;
-  }
-
-  document.addEventListener('visibilitychange', schedule);
-  reduced.addEventListener('change', () => {
-   if (reduced.matches) auto = false;
-   schedule();
-  });
-
-  // Initial update
-  update(device);
-  schedule();
- }
 
  const rail=$('.showcase-track');
  if(rail){
   const cards=[...rail.children],dots=$$('[data-slide]'),play=$('.showcase-play'),root=rail.parentElement;
   let index=0,auto=!reduced.matches,visible=false,frame=0,last=0,elapsed=0,settling=false,settleTimer;
   const duration=6500;
-  const mark=()=>{dots.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));play.textContent=auto?'Ⅱ':'▶';play.setAttribute('aria-label',auto?'Pause feature carousel':'Play feature carousel');play.setAttribute('aria-pressed',String(auto));};
-  const go=i=>{index=i;elapsed=0;settling=true;mark();root.style.setProperty('--slide-progress','0');const card=cards[i].getBoundingClientRect(),box=rail.getBoundingClientRect();rail.scrollTo({left:rail.scrollLeft+card.left-box.left-(rail.clientWidth-card.width)/2,behavior:reduced.matches?'instant':'smooth'});clearTimeout(settleTimer);settleTimer=setTimeout(()=>{settling=false;last=0;},800);};
+  const mark=()=>{dots.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));play.innerHTML=auto?'<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="3" width="4" height="14" rx="1"/><rect x="12" y="3" width="4" height="14" rx="1"/></svg>':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3L17 10L5 17Z"/></svg>';play.setAttribute('aria-label',auto?'Pause feature carousel':'Play feature carousel');play.setAttribute('aria-pressed',String(auto));};
+  const go=(i,instant=false)=>{index=i;elapsed=0;settling=true;mark();root.style.setProperty('--slide-progress','0');const card=cards[i].getBoundingClientRect(),box=rail.getBoundingClientRect();rail.scrollTo({left:rail.scrollLeft+card.left-box.left-(rail.clientWidth-card.width)/2,behavior:reduced.matches||instant?'instant':'smooth'});clearTimeout(settleTimer);settleTimer=setTimeout(()=>{settling=false;last=0;},800);};
   const tick=now=>{frame=0;if(!auto||!visible||document.hidden){last=0;return;}if(last&&!settling)elapsed+=Math.min(100,now-last);last=now;root.style.setProperty('--slide-progress',String(Math.min(1,elapsed/duration)));if(elapsed>=duration)go((index+1)%cards.length);frame=requestAnimationFrame(tick);};
   const schedule=()=>{cancelAnimationFrame(frame);last=0;mark();if(auto&&visible&&!document.hidden)frame=requestAnimationFrame(tick);};
   dots.forEach(b=>b.addEventListener('click',()=>{go(Number(b.dataset.slide));schedule();}));
   $$('[data-gallery-step]').forEach(b=>b.addEventListener('click',()=>{auto=false;go((index+Number(b.dataset.galleryStep)+cards.length)%cards.length);schedule();}));
+  rail.tabIndex=0;
+  rail.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();auto=false;go((index+(event.key==='ArrowRight'?1:-1)+cards.length)%cards.length);schedule();}});
+  let railWidth=rail.clientWidth;new ResizeObserver(()=>{if(rail.clientWidth!==railWidth){railWidth=rail.clientWidth;go(index,true);schedule();}}).observe(rail);
   play.addEventListener('click',()=>{auto=!auto;schedule();});
   const manual=()=>{auto=false;settling=false;clearTimeout(settleTimer);schedule();};
   rail.addEventListener('pointerdown',manual);rail.addEventListener('wheel',event=>{if(Math.abs(event.deltaX)>Math.abs(event.deltaY))manual();},{passive:true});

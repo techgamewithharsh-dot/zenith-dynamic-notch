@@ -105,16 +105,19 @@
      item.style.setProperty('--item-blur', `${blur.toFixed(1)}px`);
     });
 
-    const revealUI = smooth(clamp((pinnedP - 0.22) / 0.16));
-    const exitUI = smooth(clamp((pinnedP - 0.82) / 0.14));
+    const revealUI = smooth(clamp((pinnedP - 0.18) / 0.26));
+    // Keep the recording visible until the sticky stage actually leaves the viewport.
+    const exitUI = smooth(clamp((h - r.bottom) / h));
     const uiAlpha = clamp(revealUI * (1 - exitUI));
 
+    lockSeq.style.setProperty('--lock-copy-veil', (1 - smooth(clamp((pinnedP - 0.14) / 0.22))).toFixed(3));
     lockSeq.style.setProperty('--lock-bg-alpha', (1 - revealUI * 0.72 * (1 - exitUI * 0.75)).toFixed(3));
     lockSeq.style.setProperty('--lock-veil-alpha', ((1 - revealUI) * 0.78).toFixed(3));
     lockSeq.style.setProperty('--lock-bg-scale', (1.03 + pinnedP * 0.08).toFixed(3));
     lockSeq.style.setProperty('--lock-bg-blur', `${(revealUI * (1 - exitUI * 0.6) * 18).toFixed(1)}px`);
     lockSeq.style.setProperty('--lock-bg-bright', (0.94 - revealUI * 0.44 * (1 - exitUI * 0.8)).toFixed(3));
 
+    lockSeq.style.setProperty('--lock-frame-tilt', `${((1 - revealUI) * 14).toFixed(2)}deg`);
     lockSeq.style.setProperty('--lock-ui-alpha', uiAlpha.toFixed(3));
     lockSeq.style.setProperty('--lock-ui-y', `${((1 - revealUI) * 46 - exitUI * 44).toFixed(1)}px`);
     lockSeq.style.setProperty('--lock-ui-scale', (0.96 + revealUI * 0.04 - exitUI * 0.03).toFixed(3));
