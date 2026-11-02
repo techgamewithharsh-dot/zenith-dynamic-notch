@@ -6,7 +6,7 @@
 
 **1.3.1 · Free public beta · Apple silicon · macOS 26+**
 
-[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.1)
+[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://zenith-mac.github.io/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.1)
 
 Developer ID signed by Harsh Paun and Apple-notarized.
 
@@ -26,7 +26,7 @@ Zenith brings music, smart files, focus and personal touches to your Mac’s not
 | Gaming | Game Mode with pinned performance graphs, Minecraft arrivals, direct Play Together and chat, supported launch capsules and save checkpoints. |
 | Personalization | Clock styling, still-image wallpaper depth, lock-screen music and optional visual extras. |
 
-[Complete feature guide →](FEATURES.md) · [Try the keyboard demo →](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#keyboard-demo)
+[Complete feature guide →](FEATURES.md) · [Try the keyboard demo →](https://zenith-mac.github.io/#keyboard-demo)
 
 ## Install
 
@@ -79,7 +79,7 @@ Integrations depend on compatible installed apps, hardware and macOS permissions
 | [AirSend TV](https://apps.apple.com/us/app/airsend-tv-file-transfer/id6763094307) | Send personal media to Apple TV over local Wi-Fi. |
 | [Dual Monitor For Mac](https://apps.apple.com/us/app/dual-monitor-for-mac/id6794083960) | Use an iPhone or iPad as another display for your Mac. |
 
-[Explore their actual interfaces →](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#more-apps)
+[Explore their actual interfaces →](https://zenith-mac.github.io/#more-apps)
 
 ## Feedback & ownership
 
