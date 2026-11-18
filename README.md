@@ -4,9 +4,9 @@
 # Zenith
 ### Mac reimagined. Dynamic Island for Mac.
 
-**1.3.1 · Free public beta · Apple silicon · macOS 26+**
+**2.0.4 · Free public beta · Apple silicon · macOS 26+**
 
-[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://zenith-mac.github.io/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.1)
+[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v2.0.4)
 
 Developer ID signed by Harsh Paun and Apple-notarized.
 
@@ -24,9 +24,11 @@ Zenith brings music, smart files, focus and personal touches to your Mac’s not
 | Files & clipboard | Stage files, share or AirDrop, choose ZIP or direct folder sharing, convert batches and build PDFs from images. |
 | Focus & everyday tools | Timers, notes with pinning, separate tasks, teleprompter, calendar and launcher. |
 | Gaming | Game Mode with pinned performance graphs, Minecraft arrivals, direct Play Together and chat, supported launch capsules and save checkpoints. |
-| Personalization | Clock styling, still-image wallpaper depth, lock-screen music and optional visual extras. |
+| Personalization | Clock styling, adaptive still-image wallpaper depth, 22 grouped wallpapers, lock-screen music and optional visual extras. |
+| Weather & travel | Current-location or saved-city weather, hourly forecasts, rainfall, and flight-number lookup with live tracking websites. |
+| App privacy | Touch ID App Lock for selected applications while Zenith is running. |
 
-[Complete feature guide →](FEATURES.md) · [Try the keyboard demo →](https://zenith-mac.github.io/#keyboard-demo)
+[Complete feature guide →](FEATURES.md) · [Try the keyboard demo →](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#keyboard-demo)
 
 ## Install
 
@@ -34,11 +36,11 @@ Zenith brings music, smart files, focus and personal touches to your Mac’s not
 2. Open it and drag Zenith to Applications.
 3. Open Zenith and follow onboarding for macOS permissions.
 
-The current DMG is approximately **388 MB**. It requires **Apple silicon and macOS 26 or later**. The release includes SHA-256 checksums.
+The current DMG is approximately **414 MB**. It requires **Apple silicon and macOS 26 or later**. The release includes SHA-256 checksums.
 
 ## Updates that finish installing
 
-Zenith 1.3.1 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
+Zenith 2.0.4 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
 
 ### Already downloaded an update, but nothing installed?
 
@@ -53,7 +55,7 @@ Keep Zenith online and in a writable Applications folder. The 1.3.1 release uses
 - **Hardened Gatekeeper & Developer ID Security**: Hardened runtime, Developer ID codesigned, Apple notarized, and stapled. Full binary scrubbing with zero machine path leakage and sealed encrypted asset vault.
 - **Enhanced Liquid Glass UI**: Refined physics and luminescent edge reflections across all panels.
 
-[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v1.3.1)
+[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v2.0.4)
 
 ## What was new in 1.3.0
 
@@ -79,7 +81,7 @@ Integrations depend on compatible installed apps, hardware and macOS permissions
 | [AirSend TV](https://apps.apple.com/us/app/airsend-tv-file-transfer/id6763094307) | Send personal media to Apple TV over local Wi-Fi. |
 | [Dual Monitor For Mac](https://apps.apple.com/us/app/dual-monitor-for-mac/id6794083960) | Use an iPhone or iPad as another display for your Mac. |
 
-[Explore their actual interfaces →](https://zenith-mac.github.io/#more-apps)
+[Explore their actual interfaces →](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/#more-apps)
 
 ## Feedback & ownership
 
