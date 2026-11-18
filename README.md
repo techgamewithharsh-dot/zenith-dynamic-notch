@@ -4,9 +4,9 @@
 # Zenith
 ### Mac reimagined. Dynamic Island for Mac.
 
-**2.0.4 · Free public beta · Apple silicon · macOS 26+**
+**2.0.5 · Free public beta · Apple silicon · macOS 26+**
 
-[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v2.0.4)
+[**Download Zenith ↓**](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/latest/download/Zenith.dmg) · [Explore the website](https://techgamewithharsh-dot.github.io/zenith-dynamic-notch/) · [Release notes](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v2.0.5)
 
 Developer ID signed by Harsh Paun and Apple-notarized.
 
@@ -40,7 +40,7 @@ The current DMG is approximately **414 MB**. It requires **Apple silicon and mac
 
 ## Updates that finish installing
 
-Zenith 2.0.4 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
+Zenith 2.0.5 includes a separate, signed **Zenith Updater**. After downloading and verifying an update, it can finish installation after Zenith closes. It replaces the app atomically and keeps the previous app until the new version launches. Settings stay in place. Automatic checks run at launch and periodically; manual **Check for Updates** remains in Settings.
 
 ### Already downloaded an update, but nothing installed?
 
@@ -55,7 +55,7 @@ Keep Zenith online and in a writable Applications folder. The 1.3.1 release uses
 - **Hardened Gatekeeper & Developer ID Security**: Hardened runtime, Developer ID codesigned, Apple notarized, and stapled. Full binary scrubbing with zero machine path leakage and sealed encrypted asset vault.
 - **Enhanced Liquid Glass UI**: Refined physics and luminescent edge reflections across all panels.
 
-[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v2.0.4)
+[Full release notes and checksums →](https://github.com/techgamewithharsh-dot/zenith-dynamic-notch/releases/tag/v2.0.5)
 
 ## What was new in 1.3.0
 
